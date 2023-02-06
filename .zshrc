@@ -1,0 +1,1 @@
+# .zshrc by Jakub Waszkiewicz
