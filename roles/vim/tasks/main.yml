@@ -1,0 +1,22 @@
+- name: Create directories for vim configuration
+  ansible.builtin.file:
+    dest: "{{ vim_config_location }}/{{ item }}"
+    state: directory
+  loop:
+    - colors
+    - autoload
+
+- name: Download onedark.vim theme
+  ansible.builtin.get_url:
+    url: "{{ onedark_vim_url }}/{{ item }}/onedark.vim"
+    dest: "{{ vim_config_location }}/{{ item }}/onedark.vim"
+    mode: "0600"
+  loop:
+    - colors
+    - autoload
+
+- name: Create .vimrc file
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/.vimrc"
+    dest: "{{ vimrc_location }}"
+    mode: "0600"
