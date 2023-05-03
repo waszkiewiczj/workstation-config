@@ -1,3 +1,10 @@
+# TODO: add support for non-gtk gui
+- name: Install vim-gtk
+  become: yes
+  ansible.builtin.package:
+    name: vim-gtk3
+    state: present
+
 - name: Create directories for vim configuration
   ansible.builtin.file:
     dest: "{{ vim_config_location }}/{{ item }}"
