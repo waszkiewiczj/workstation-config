@@ -1,2 +1,2 @@
 run: 
-	ansible-playbook ./site.yml 
+	ansible-playbook --ask-become-pass ./site.yml 

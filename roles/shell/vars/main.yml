@@ -1,0 +1,9 @@
+onedark_vim_url: https://raw.githubusercontent.com/joshdick/onedark.vim/main
+
+oh_my_zsh_repository_url: https://github.com/ohmyzsh/ohmyzsh.git
+oh_my_zsh_location: "{{ ansible_env['HOME']}}/.oh-my-zsh"
+
+powerlevel10k_repository_url: https://github.com/romkatv/powerlevel10k.git
+
+zsh_autosuggestions_repository_url: https://github.com/zsh-users/zsh-autosuggestions
+

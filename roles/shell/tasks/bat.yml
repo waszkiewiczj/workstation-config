@@ -1,0 +1,28 @@
+- name: Install bat
+  become: yes
+  ansible.builtin.package:
+    name: bat
+    state: present
+
+- name: Resolve path to batcat
+  ansible.builtin.command: which batcat
+  register: batcat_path
+  when: ansible_os_family == "Debian"
+
+- name: Create symlink from batcat to bat
+  become: yes
+  ansible.builtin.file:
+    src: "{{ batcat_path.stdout }}"
+    dest: /usr/bin/bat
+    state: link
+  when: ansible_os_family == "Debian"
+
+- name: Resolve path to bat config dir
+  ansible.builtin.command: bat --config-dir
+  register: bat_config_dir
+
+- name: Create bat config
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/bat.config"
+    dest: "{{ bat_config_dir.stdout }}/config"
+    mode: "0600"

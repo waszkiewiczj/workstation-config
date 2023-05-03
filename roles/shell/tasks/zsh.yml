@@ -1,0 +1,37 @@
+- name: Install zsh
+  become: yes
+  ansible.builtin.package:
+    name: zsh
+    state: present
+
+- name: Resolve zsh binary path
+  ansible.builtin.command: which zsh
+  register: zsh_path
+
+- name: Set zsh as default shell
+  become: yes
+  ansible.builtin.user:
+    name: "{{ ansible_env['USER'] }}"
+    shell: "{{ zsh_path.stdout }}"
+
+- name: Install OhMyZsh
+  ansible.builtin.git:
+    repo: "{{ oh_my_zsh_repository_url }}"
+    dest: "{{ oh_my_zsh_location }}"
+
+- name: Install powerlevel10k theme
+  ansible.builtin.git:
+    repo: "{{ powerlevel10k_repository_url }}"
+    dest: "{{ oh_my_zsh_location }}/themes/powerlevel10k"
+    depth: 1
+
+- name: Instal zsh-autosuggestions plugin
+  ansible.builtin.git:
+    repo: "{{ zsh_autosuggestions_repository_url }}"
+    dest: "{{ oh_my_zsh_location }}/plugins/zsh-autosuggestions"
+
+- name: Create .zshrc file
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/.zshrc"
+    dest: "{{ ansible_env['HOME'] }}/.zshrc"
+    mode: "0600"

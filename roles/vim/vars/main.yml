@@ -1,3 +1,0 @@
-vim_config_location: "{{ ansible_env['HOME'] }}/.vim"
-vimrc_location: "{{ ansible_env['HOME'] }}/.vimrc"
-onedark_vim_url: https://raw.githubusercontent.com/joshdick/onedark.vim/main

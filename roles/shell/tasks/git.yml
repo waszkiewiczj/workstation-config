@@ -1,0 +1,13 @@
+- name: Install git & tig
+  become: yes
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - git
+    - tig
+
+- name: Create .tigrc
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/.tigrc"
+    dest: "{{ ansible_env['HOME'] }}/.tigrc"
