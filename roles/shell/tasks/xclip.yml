@@ -1,0 +1,4 @@
+- name: Install xclip
+  ansible.builtin.package:
+    name: xclip
+    state: present

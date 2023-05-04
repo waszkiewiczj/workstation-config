@@ -3,7 +3,7 @@
   become: yes
   ansible.builtin.package:
     name: vim-gtk3
-    state: present
+    state: latest 
 
 - name: Create directories for vim configuration
   ansible.builtin.file:

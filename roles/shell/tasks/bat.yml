@@ -2,7 +2,7 @@
   become: yes
   ansible.builtin.package:
     name: bat
-    state: present
+    state: latest 
 
 - name: Resolve path to batcat
   ansible.builtin.command: which batcat

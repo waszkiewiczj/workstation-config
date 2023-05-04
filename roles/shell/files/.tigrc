@@ -1,0 +1,1 @@
+bind generic x !sh -c "echo -n %(commit) | xclip -selection clipboard"

@@ -1,22 +1,13 @@
-- name: Install xclip
-  ansible.builtin.package:
-    name: xclip
-    state: present
-
-- name: Install & configure git
-  ansible.builtin.include_tasks: git.yml
-
-- name: Install & configure vim
-  ansible.builtin.include_tasks: vim.yml
-
-- name: Install & configure bat
-  ansible.builtin.include_tasks: bat.yml
-
-- name: Install fuzzy-finder
-  become: yes
-  ansible.builtin.package:
-    name: fzf
-    state: present
-
-- name: Install & configure zsh
-  ansible.builtin.include_tasks: zsh.yml
+- name: Install & configure tools
+  ansible.builtin.include_tasks: 
+    file: "{{ tool }}.yml"
+  loop:
+    - git
+    - vim
+    - bat
+    - fzf
+    - tmux
+    - xclip
+    - zsh
+  loop_control:
+    loop_var: tool
